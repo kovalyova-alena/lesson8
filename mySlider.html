@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Slider</title>
+    <style type="text/css">
+    	div {
+    		width: 200px;
+    		height: 200px;
+    		overflow: hidden;
+    	}
+    	ul {
+    		list-style: none;
+    		padding: 0;
+    		margin: 0;
+    		position: relative;
+
+    	}
+    	li {
+ 			width: 200px;
+ 			height: 200px;
+ 			float: left;
+ 			transition: background 2s ease;
+    	}
+    	.first {
+    		background: red;
+    	}
+    	.second {
+    		background: blue;
+    	}
+    	.third {
+    		background: green;
+    	}
+    	button {
+    		width: 100px;
+    		height: 30px;
+    		margin-top: 10px;
+    	}
+    </style>
+</head>
+<body>
+    <div class="mySlider">
+    	<ul class="list">
+    		<li class="first"></li>
+    		<li class="second"></li>
+    		<li class="third"></li>
+    	</ul>
+    </div>
+    <div class="buttons">
+    	<button data-id="prev">Prev</button>
+    	<button data-id="next">Next</button>  	
+    </div>
+
+      <script type="text/javascript">
+ 		var ul = document.querySelector('ul'),
+ 		    width = ul.firstElementChild.clientWidth;
+ 		    count = ul.children.length,
+ 		    buttons = document.querySelector('.buttons');
+ 			ulWidth = (count+1)*width;
+
+ 			ul.style.width = ulWidth + 'px'; 
+ 			buttons.addEventListener('click', sliderMove);
+
+ 			function sliderMove (e) {
+ 				var target = e && e.target || e.srcElement,
+ 				    attr = target.getAttribute('data-id');
+
+ 				if (!attr) return;
+ 				if (attr == 'next') {
+ 					var firstEl = ul.firstElementChild,
+ 				        clone = firstEl.cloneNode();
+
+	 				ul.appendChild(clone);
+	 				ul.style.left = - width + 'px';
+	 				ul.removeChild(firstEl);
+	 				ul.style.left = 0;
+ 				} else {
+ 					var lastEl = ul.lastElementChild,
+                        clone = lastEl.cloneNode();
+
+                    ul.insertBefore(clone, ul.firstElementChild);
+                    ul.style.left = - width + 'px';
+                    ul.removeChild(lastEl);
+                    ul.style.left = 0;
+ 				}
+ 			}
+ 	
+
+    </script>
+</body>
+</html>
