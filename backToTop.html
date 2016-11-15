@@ -1,0 +1,34 @@
+<!-- back to top button; -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Back To Top</title>
+	<style>
+		button {
+			width: 200px;
+			height: 60px;
+		}
+		
+		.bottomButton {
+			position: relative;
+			display: block;
+			top: 1400px;
+		}
+	</style>
+</head>
+<body>
+	<button class="upperButton">Я верхняя кнопка</button>
+	<button class="bottomButton">Нажми и попадешь наверх</button>
+
+	<script>
+		var bottomButton = document.querySelector('.bottomButton');
+
+		bottomButton.addEventListener('click', scrollToTop);
+
+    	function scrollToTop () {
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
