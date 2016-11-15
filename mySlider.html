@@ -52,39 +52,36 @@
     </div>
 
       <script type="text/javascript">
- 		var ul = document.querySelector('ul'),
- 		    width = ul.firstElementChild.clientWidth;
- 		    count = ul.children.length,
- 		    buttons = document.querySelector('.buttons');
- 			ulWidth = (count+1)*width;
+        var ul = document.querySelector('ul'),
+            width = ul.firstElementChild.clientWidth;
+            count = ul.children.length,
+            buttons = document.querySelector('.buttons');
+            ulWidth = (count+1)*width;
 
- 			ul.style.width = ulWidth + 'px'; 
- 			buttons.addEventListener('click', sliderMove);
+            ul.style.width = ulWidth + 'px'; 
+            buttons.addEventListener('click', sliderMove);
 
- 			function sliderMove (e) {
- 				var target = e && e.target || e.srcElement,
- 				    attr = target.getAttribute('data-id');
+            function sliderMove (e) {
+                var target = e && e.target || e.srcElement,
+                    attr = target.getAttribute('data-id');
 
- 				if (!attr) return;
- 				if (attr == 'next') {
- 					var firstEl = ul.firstElementChild,
- 				        clone = firstEl.cloneNode();
+                if (!attr) return;
+                if (attr == 'next') {
+                  sliderHandler('firstElementChild', 'appendChild');
+                } else {
+                  sliderHandler('lastElementChild', 'insertBefore', ul.firstElementChild);
+                }
 
-	 				ul.appendChild(clone);
-	 				ul.style.left = - width + 'px';
-	 				ul.removeChild(firstEl);
-	 				ul.style.left = 0;
- 				} else {
- 					var lastEl = ul.lastElementChild,
-                        clone = lastEl.cloneNode();
+                function sliderHandler(elem, method, params) {
+                    var element = ul[elem],
+                        clone = element.cloneNode();
 
-                    ul.insertBefore(clone, ul.firstElementChild);
+                    ul[method](clone, params);
                     ul.style.left = - width + 'px';
-                    ul.removeChild(lastEl);
                     ul.style.left = 0;
- 				}
- 			}
- 	
+                    ul.removeChild(element);    
+                }
+            }
 
     </script>
 </body>
