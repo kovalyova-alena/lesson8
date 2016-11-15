@@ -71,16 +71,21 @@
                 } else {
                   sliderHandler('lastElementChild', 'insertBefore', ul.firstElementChild);
                 }
+                listToMove();
 
                 function sliderHandler(elem, method, params) {
                     var element = ul[elem],
                         clone = element.cloneNode();
 
                     ul[method](clone, params);
-                    ul.style.left = - width + 'px';
-                    ul.style.left = 0;
+                    listToMove(-200);
                     ul.removeChild(element);    
                 }
+
+                function listToMove(left) {
+                    var left = left ? left: 0;
+                    ul.style.cssText = 'left:' + left + 'px;';
+                }    
             }
 
     </script>
