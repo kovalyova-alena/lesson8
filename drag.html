@@ -44,13 +44,13 @@
 			    newX = deltaX + cursorX,
 			    newY = deltaY + cursorY;
 
-			div.style.top = newY + "px";
-    		div.style.left = newX + "px";
+    		div.style.cssText = "top:" + newY + "px; left:" + newX + "px";
 		}
 
 		function clearXY(e) {
 			window.removeEventListener('mousemove', moveHandler);
 		}
+
 	</script>
 </body>
 </html>
