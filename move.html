@@ -1,0 +1,58 @@
+ <!-- создайте div, при клике на него, div начинает двигаться вправо, при клике на кнопку - останавливается, при попадании div к краю окна, он переходит к началу окна. -->
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+ 	<meta charset="UTF-8">
+ 	<title>Move</title>
+ 	<style>
+ 		.moving {
+			display: block;
+			position: relative;
+			width: 100px;
+			height: 40px;
+			background: blue;
+		
+ 		}
+ 		.stop {
+ 			top: 10px;
+ 			position: relative;
+ 			display: block;
+ 			width: 100px;
+ 			height: 30px;
+ 		}
+ 	</style>
+ </head>
+ <body>
+ 	<div class="moving"></div>
+ 	<button class="stop"> Остановить</button>
+	<script>
+		var block = document.querySelector('.moving'),
+		    stop = document.querySelector('.stop');
+
+		block.addEventListener('click', move);
+		stop.addEventListener('click', stop);
+
+		function move (e) {
+			browserWidth = document.documentElement.clientWidth;
+		   
+		}
+		
+
+
+/*
+function move(element, from, to, step, delay) {
+    var position = parseInt(element.style.left);
+    position = isNaN(position) ? from : position;
+    position = (position >= to) ? from : position + step; 
+    element.style.left = position + "px";
+    setTimeout(function () {
+        move(element, from, to, step, delay);
+    }, delay)
+}
+
+move(block, 0, 400, 1, 10);
+*/
+	</script>
+ </body>
+ </html>

@@ -23,30 +23,23 @@
 		    deltaY = null;
 	   
 		div.addEventListener('mousedown', drag);
-
 		window.addEventListener('mouseup', clearXY);
-
 		function drag(e) {
 			var cursorX = e.clientX,
 			    cursorY = e.clientY,
 			    blockX = div.offsetLeft,
 			    blockY = div.offsetTop;
-
 			deltaX = blockX - cursorX;
 			deltaY = blockY - cursorY;
-
 			window.addEventListener('mousemove', moveHandler);
 		}
-
 		function moveHandler(e) {
 			var cursorX = e.clientX,
 			    cursorY = e.clientY,
 			    newX = deltaX + cursorX,
 			    newY = deltaY + cursorY;
-
     		div.style.cssText = "top:" + newY + "px; left:" + newX + "px";
 		}
-
 		function clearXY(e) {
 			window.removeEventListener('mousemove', moveHandler);
 		}

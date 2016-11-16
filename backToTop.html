@@ -6,8 +6,10 @@
 	<title>Back To Top</title>
 	<style>
 		button {
+			position: relative;
 			width: 200px;
 			height: 60px;
+			top: 300px;
 		}
 		
 		.bottomButton {
@@ -23,11 +25,12 @@
 
 	<script>
 		var bottomButton = document.querySelector('.bottomButton');
+		var upperButton = document.querySelector('.upperButton');
 
 		bottomButton.addEventListener('click', scrollToTop);
 
     	function scrollToTop () {
-            window.scrollTo(0, 0);
+            upperButton.scrollIntoView(true);
         }
     </script>
 </body>
