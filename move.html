@@ -12,7 +12,6 @@
 			width: 100px;
 			height: 40px;
 			background: blue;
-		
  		}
  		.stop {
  			top: 10px;
@@ -28,31 +27,31 @@
  	<button class="stop"> Остановить</button>
 	<script>
 		var block = document.querySelector('.moving'),
-		    stop = document.querySelector('.stop');
+		    stop = document.querySelector('.stop'),
+		    browserWidth = document.documentElement.clientWidth,
+		    clearMove;
 
 		block.addEventListener('click', move);
-		stop.addEventListener('click', stop);
+		stop.addEventListener('click', stopMove);
 
-		function move (e) {
-			browserWidth = document.documentElement.clientWidth;
-		   
-		}
+		function move() {
+			clearMove = setTimeout(function(){
+				var styleLeft = (window.getComputedStyle(block).left),
+				    left = styleLeft ? styleLeft : 0,
+				    position = parseInt(left);
+				
+				position = (position != browserWidth) ? position + 1 : 0; 
+				block.style.left = position + "px";
+				move();
+			}, 5);
+
+        }
+
+		 function stopMove() {
+            clearInterval(clearMove);
+		 }
 		
 
-
-/*
-function move(element, from, to, step, delay) {
-    var position = parseInt(element.style.left);
-    position = isNaN(position) ? from : position;
-    position = (position >= to) ? from : position + step; 
-    element.style.left = position + "px";
-    setTimeout(function () {
-        move(element, from, to, step, delay);
-    }, delay)
-}
-
-move(block, 0, 400, 1, 10);
-*/
 	</script>
  </body>
  </html>
