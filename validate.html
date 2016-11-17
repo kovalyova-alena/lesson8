@@ -1,0 +1,77 @@
+<!-- Переделайте пример 013 через работу атрибутов.
+ Попробуйте варианты с рефакторингом -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Валидация формы</title></script>
+    <style type="text/css">
+        input.invalid {
+            background-color: Pink;
+        }
+
+        input.valid {
+            background-color: LightGreen;
+        }
+    </style>
+</head>
+<body>
+   <form name="form" class="form1">
+      Name:<input type="text" name="userName"/><br />
+      email:<input type="text" name="email" /><br />
+      zipcode:<input type="text" name="zip" /><br />
+      <input type="submit" />
+   </form>
+   <script>
+
+
+   var form = document.querySelector('.form1'),
+      input = {
+         userName: /^[a-z0-9-]+$/,
+         email: /\b[a-z0-9._]+@[a-z0-9.-]+\.[a-z]{2,4}\b/i,
+         zip: /\d{5}/
+      };
+
+   form.addEventListener('click', validate);
+
+   function validate(e) {
+      var target = e && e.target || e.srcElement;
+
+      if (target.getAttribute('type') == 'text'){
+          target.addEventListener('change', validateText);     
+      } else if (target.getAttribute('type') == 'submit') {
+         formSubmit();   
+      } else {
+         return;
+      }
+
+      function validateText() {
+           for (var key in input) {   
+              if (target.getAttribute('name') == key) {
+                 var pattern = input[key];
+                     res = pattern.test(target.value);
+
+                  (res === true) ? target.className = "valid" : target.className = "invalid";
+               }
+          }
+      }
+
+      function formSubmit() {
+         var tagsInput = document.querySelectorAll('input'),
+             invalid = false;
+
+         for (var i = 0; (tagsInput.length - 1) > i; i++) {
+            var elem = tagsInput[i];
+
+            if (elem.classList.contains('invalid') || elem.value == "") invalid = true;
+            if (invalid) {
+               alert("Допущены ошибки при заполнении формы.");
+               e.preventDefault();
+               return false;
+            }
+         }
+      }   
+   }        
+   </script>
+</body>
+</html>
