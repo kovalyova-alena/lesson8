@@ -37,9 +37,9 @@
    function validate(e) {
       var target = e && e.target || e.srcElement;
 
-      if (target.getAttribute('type') == 'text'){
+      if (target.type == 'text'){
           target.addEventListener('change', validateText);     
-      } else if (target.getAttribute('type') == 'submit') {
+      } else if (target.type == 'submit') {
          formSubmit();   
       } else {
          return;
@@ -47,7 +47,7 @@
 
       function validateText() {
            for (var key in input) {   
-              if (target.getAttribute('name') == key) {
+              if (target.name == key) {
                  var pattern = input[key];
                      res = pattern.test(target.value);
 
